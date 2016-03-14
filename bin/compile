@@ -57,20 +57,20 @@ npm install -g npm@latest > /dev/null 2>&1 | indent
 
 vendor_dir="$build_dir/vendor2" #cached vendor dir
 
-if [ -d $cache_dir/node/vendor/nasm ]; then
-  status "Copying nasm from cache"
-  cp -r $cache_dir/node/vendor/nasm $vendor_dir
-else
-  status "Installing nasm from source"
-  NVERSION="2.11"
-  curl http://www.nasm.us/pub/nasm/releasebuilds/$NVERSION/nasm-$NVERSION.tar.gz -s | tar xz
-  cd nasm-$NVERSION
-  ./configure >/dev/null 2>&1 && make >/dev/null 2>&1
+# if [ -d $cache_dir/node/vendor/nasm ]; then
+#   status "Copying nasm from cache"
+#   cp -r $cache_dir/node/vendor/nasm $vendor_dir
+# else
+#   status "Installing nasm from source"
+#   NVERSION="2.11"
+#   curl http://www.nasm.us/pub/nasm/releasebuilds/$NVERSION/nasm-$NVERSION.tar.gz -s | tar xz
+#   cd nasm-$NVERSION
+#   ./configure >/dev/null 2>&1 && make >/dev/null 2>&1
   
-  mkdir -p $vendor_dir/nasm/bin
-  mv nasm $vendor_dir/nasm/bin
-  chmod +x $vendor_dir/nasm/bin/*
-fi
+#   mkdir -p $vendor_dir/nasm/bin
+#   mv nasm $vendor_dir/nasm/bin
+#   chmod +x $vendor_dir/nasm/bin/*
+# fi
 PATH=$PATH:$vendor_dir/nasm/bin
 
 
